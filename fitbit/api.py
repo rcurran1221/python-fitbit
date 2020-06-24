@@ -809,6 +809,24 @@ class Fitbit(object):
         )
         return self.make_request(url)
 
+    def get_sleep_range(self, startDate, endDate):
+        """
+        https://dev.fitbit.com/docs/sleep/#get-sleep-logs
+        startDate and endDate should be a datetime.date object.
+        """
+        # need to format dates with leading 0
+        url = "{0}/{1}/user/-/sleep/date/{startYear}-{startMonth}-{startDay}/{endYear}-{endMonth}-{endDay}.json".format(
+            *self._get_common_args(),
+            startYear=startDate.year,
+            startMonth=startDate.month,
+            startDay=startDate.day,
+            endYear=endDate.year,
+            endMonth=endDate.month,
+            endDay=endDate.day
+        )
+        print(url)
+        return self.make_request(url)
+
     def log_sleep(self, start_time, duration):
         """
         https://dev.fitbit.com/docs/sleep/#log-sleep
