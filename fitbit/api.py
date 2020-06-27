@@ -815,7 +815,8 @@ class Fitbit(object):
         startDate and endDate should be a datetime.date object.
         """
         # need to format dates with leading 0
-        url = "{0}/{1}/user/-/sleep/date/{startYear}-{startMonth}-{startDay}/{endYear}-{endMonth}-{endDay}.json".format(
+        url = "{0}/{1}/user/-/sleep/date/{startYear:04d}-{startMonth:02d}-{startDay:02d}/" \
+        "{endYear:04d}-{endMonth:02d}-{endDay:02d}.json".format(
             *self._get_common_args(),
             startYear=startDate.year,
             startMonth=startDate.month,
